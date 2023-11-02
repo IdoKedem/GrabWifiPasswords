@@ -5,7 +5,7 @@ import time
 
 
 cwd = os.getcwd()
-passwords_dir = f"{cwd}\Passwords"
+passwords_dir = fr"{cwd}\Passwords"
 
 print("Looking for directory...")
 if not os.path.exists(passwords_dir):
@@ -13,16 +13,16 @@ if not os.path.exists(passwords_dir):
     os.mkdir(passwords_dir)
     print("Creating directory...")
 else:
-    print('Dirctory Found')
+    print('Directory Found')
 
 os.popen(f'netsh wlan export profile folder={passwords_dir} key=clear')
 print('Grabbing Passwords...')
 time.sleep(2)
 
-file_names = glob.glob(f'{passwords_dir}\*.xml')
+file_names = glob.glob(fr'{passwords_dir}\*.xml')
 
 print("Creating output file...")
-with open(f'{passwords_dir}\sha-ger.txt', 'a') as f:
+with open(fr'{passwords_dir}\passwords.txt', 'a') as f:
     password_counter = 0
     if not file_names:
         print("Wifi profiles not found")
@@ -46,4 +46,4 @@ with open(f'{passwords_dir}\sha-ger.txt', 'a') as f:
     print('Finished Successfully')
 
 
-input('\nPress enter to exit')
+time.sleep(5)
